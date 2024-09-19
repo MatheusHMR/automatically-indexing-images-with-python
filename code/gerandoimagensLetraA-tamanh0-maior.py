@@ -26,7 +26,7 @@ imagem_base = Image.open(f'{image_path}\FotoBaseLogoLetraP-tamanho-maior.png')
 numero_inicial = 250
 
 # Definindo o número de imagens desejadas
-num_imagens = 50
+num_imagens = 51
 
 # O número de imagens deve ser somada ao número inicial
 num_imagens += numero_inicial
@@ -76,6 +76,6 @@ for i in range(numero_inicial, num_imagens):
 
 os.system('cls')
 print()
-print(f"{num_imagens - numero_inicial} imagens criadas e salvas em {diretorio_saida}, do número {num_imagens - numero_inicial} ao {num_imagens}.")
+print(f"{num_imagens - numero_inicial} imagens criadas e salvas em {diretorio_saida}, do número {num_imagens - numero_inicial} ao {num_imagens - 1}.")
 print()
 print()
