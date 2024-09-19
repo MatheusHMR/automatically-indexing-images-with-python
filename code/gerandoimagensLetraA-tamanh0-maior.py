@@ -1,9 +1,17 @@
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
-import os
+import os, sys
 
 
 # Defina o diretório de saída para salvar as imagens
-diretorio_saida = r'/home/matheus/Documentos/5º PERÍODO/NRSERVICOS-GERANDO-IMAGENS/AdesivosLetraA-101-200-NR-SERVICOS'
+# diretorio_saida = r'/home/matheus/Documentos/5º PERÍODO/NRSERVICOS-GERANDO-IMAGENS/AdesivosLetraA-101-200-NR-SERVICOS'
+other_pc_root_path = r'C:\Users\Matheus Ramos\Documents\Pessoal\automatically-indexing-images-with-python\outputs'
+image_path = r'automatically-indexing-images-with-python\inputs'
+font_path = r'automatically-indexing-images-with-python\inputs\fonte\open-sans'
+root_path = other_pc_root_path
+
+# COLOCAR PASTA DO OUTPUT DESEJADO:
+folder_name = 'P_250_ao_300'
+diretorio_saida = f'{root_path}\\{folder_name}'
 
 # Verificando se o diretório existe. Se não existir, criá-lo.
 if not os.path.exists(diretorio_saida):
@@ -11,10 +19,11 @@ if not os.path.exists(diretorio_saida):
 
 
 # Carregando a imagem base
-imagem_base = Image.open(r'/home/matheus/Documentos/5º PERÍODO/NRSERVICOS-GERANDO-IMAGENS/FotoBaseLogoLetraA-TAMANHO-MAIOR.png')
+# imagem_base = Image.open(r'/home/matheus/Documentos/5º PERÍODO/NRSERVICOS-GERANDO-IMAGENS/FotoBaseLogoLetraA-TAMANHO-MAIOR.png')
+imagem_base = Image.open(f'{image_path}\FotoBaseLogoLetraP-tamanho-maior.png')
 
 # Definindo o número inicial para gerar as imagens
-numero_inicial = 201
+numero_inicial = 250
 
 # Definindo o número de imagens desejadas
 num_imagens = 50
@@ -28,7 +37,8 @@ imagem_base_RGBA = imagem_base.convert('RGBA')
 
 # Definindo a fonte para o número de identificação
 # (Foram baixadas várias fontes para criar diferentes tipos de stickers)
-fonte = ImageFont.truetype(r'/home/matheus/Documentos/5º PERÍODO/NRSERVICOS-GERANDO-IMAGENS/fonte/open-sans/OpenSans-Bold.ttf', 95)
+# fonte = ImageFont.truetype(r'/home/matheus/Documentos/5º PERÍODO/NRSERVICOS-GERANDO-IMAGENS/fonte/open-sans/OpenSans-Bold.ttf', 95)
+fonte = ImageFont.truetype(f'{font_path}\OpenSans-Bold.ttf', 95)
 
 for i in range(numero_inicial, num_imagens):
     
@@ -45,8 +55,14 @@ for i in range(numero_inicial, num_imagens):
     # Posicao = (x, y) --> quanto maior o valor de x, mais pra direita
     # Quanto maior o valor de y, mais pra baixo
     
-    posicao = (660, 965) 
+    # LETRA A
+    # posicao = (660, 965) 
+
+    # LETRA P
+    posicao = (660, 325) 
     # Cor em rgb hex 343569, cor em rgb (52, 53, 105) -- azul marinho
+
+    
     desenho.text(posicao, identificacao, fill= (52, 53, 105), font=fonte)
 
     # Salvando a imagem com o número de identificação
@@ -58,4 +74,8 @@ for i in range(numero_inicial, num_imagens):
     imagem.save(caminho_arquivo)
 
 
-print(f"{num_imagens} imagens criadas e salvas em {diretorio_saida}.")
+os.system('cls')
+print()
+print(f"{num_imagens - numero_inicial} imagens criadas e salvas em {diretorio_saida}, do número {num_imagens - numero_inicial} ao {num_imagens}.")
+print()
+print()
